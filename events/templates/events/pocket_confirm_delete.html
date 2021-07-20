@@ -1,0 +1,21 @@
+{% extends 'events/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    
+    <form method='POST' class="event_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="border p-3 mt-2">
+        <fieldset>
+            <legend class="mb-3 ">Delete a event from Pocket</legend>
+            {{form | crispy}}
+            <h3 class='fw-normal'>Are you sure do you want to delete this?</h3>
+            <h3>'{{event.event.title}}'</h3>
+            <button class='btn btn-outline-danger m-2' type='submit'>Delete</button>
+            <a href="{% url 'pocket' %}" class='btn btn-outline-secondary'>Cancel</a>
+        </fieldset>
+        </div>
+        
+    </form> 
+    
+{% endblock content %}

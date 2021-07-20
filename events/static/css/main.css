@@ -1,0 +1,96 @@
+body {
+    background: #ffffff;
+    color: #333333;
+    margin-top: 1rem;
+  }
+
+.navbar{
+  /* position: fixed; */
+  top: 0px
+}
+
+.account-img {
+    height: 155px;
+    width: 155px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+.search-account-img{
+  height: 80px;
+  width: 80px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.publisher-info{
+    margin-top: 10px;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+.publisher-img{
+  height: 130px;
+  width: 130px;
+}
+
+.container.event-detail{
+  display: flex;
+}
+
+.event-meta{
+  height: max-content;
+  /* position: sticky; */
+  top: 75px
+}
+
+.user-accounts{
+  display:flex;
+  margin: 5px   
+  }
+
+
+h1, h2, h3, h4, h5, h6 {
+  color:#444444;
+  font-weight: 600;
+}
+
+
+a {
+  color: #282a2c;
+  text-decoration: none;
+}
+
+.event-title{
+  color:#3b2c52 
+}
+
+i{
+  display:inline;
+  width: 50px;
+}
+
+.bi-instagram{
+  color: #fb3958
+}
+
+.bi-facebook{
+  color: #4267B2
+}
+
+.bi-twitter{
+  color: #1DA1F2
+}
+
+.bi-geo-alt-fill{
+  color:red
+}
+
+.bi-calendar-check{
+  color:rgb(0, 137, 228)
+}
+
+.event_form{
+  width: max-content;
+  /* width:800px; */
+}

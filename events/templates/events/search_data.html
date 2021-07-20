@@ -1,0 +1,31 @@
+{% extends "events\base.html" %}
+
+{% block content %}
+    <h1>You Searched For - '{{searched_for}}'</h1><br>
+
+    {% if u_data %}
+        <small>Search Result - User account found</small>
+        {% for user in u_data %}
+        <div class="rounded-3 border border-5 border-light event_form mt-2 px-2 py-2">
+            <img class="rounded-circle search-account-img" src="{{user.profile.profile_pic.url}}" alt="">
+            <h4><a href="{% url 'others-profile' user.id %}">{{user.username}}</a></h4>
+        </div>
+        {% endfor %}
+    {% elif e_data %}
+        <small>Search Result - Event found</small>
+        {% for event in e_data %}
+        <div class="w-75 p-3 my-2">
+            <div class="rounded-3 border border-5 border-light mt-2 px-2 py-2">
+                <a href="{% url 'event-detail' event.id %}">
+                    <h5 class="event-title">{{event.title}}</h5>
+                </a>
+                <small>By : {{event.publisher}}</small>
+                <small class='mx-3'>Date : {{event.event_date}}</small>
+                <small class="badge bg-secondary mx-5">{{event.event_category}}</small>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h3>Sorry, no data found.</h3>
+    {% endif %}
+{% endblock content%}

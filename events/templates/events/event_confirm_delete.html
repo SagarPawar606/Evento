@@ -1,0 +1,22 @@
+{% extends 'events/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    
+    <form method='POST' class="event_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="border p-3 mt-2">
+        <fieldset>
+            <legend class="mb-3 ">Delete a event</legend>
+            {{form.media}}
+            {{form | crispy}}
+            <h3 class='fw-normal'>Are you sure do you want to delete this event?</h3>
+            <h3>'{{event.title}}'</h3>
+            <button class='btn btn-outline-danger m-2' type='submit'>Delete</button>
+            <a href="{% url 'myevent-page' %}" class='btn btn-outline-secondary'>Cancel</a>
+        </fieldset>
+        </div>
+        
+    </form> 
+    
+{% endblock content %}

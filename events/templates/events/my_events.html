@@ -1,0 +1,23 @@
+{% extends "events\base.html" %}
+
+{% block content %}
+
+    <h1>All Events Publihsed By You</h1>
+    {% for event in events %}
+
+    <div class="card mb-2 position-relative" style="width: 35rem;">
+        <div class="card-body">
+            <a href="{% url 'event-detail' event.id %}">
+                <h5 class="card-title event-title">{{event.title}}</h5>
+            </a>
+            <div class="d-flex justify-content-between"></div>
+                <!-- <a href="#">{{event.publisher}}, </a> -->
+                <small>Added : {{event.date_added}}</small>
+                <a href="{% url 'event-update' event.id %}" title='Edit' class='m-2' style="color:blue"><i class="bi bi-pencil"></i></a>
+                <a href="{% url 'event-delete' event.id %}" title='Delete' style="color:red"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+      
+    {% endfor %}
+
+{% endblock content%}

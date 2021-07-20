@@ -1,0 +1,10 @@
+{% extends 'events/base.html' %}
+{% block content %}
+    
+    <div class="container">
+        <h2>You have been successfully logged out!</h2>
+        <a class='pe-3' href="{%url 'home-page'%}">Home</a>
+        <a href="{%url 'login'%}">Login</a>
+    </div>
+
+{% endblock content %}

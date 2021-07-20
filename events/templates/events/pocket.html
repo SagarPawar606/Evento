@@ -1,0 +1,21 @@
+{% extends "events\base.html" %}
+
+{% block content %}
+
+    <h1>Saved evnets in your Pocket</h1>
+
+    {% for event in pocket %}
+    <div class="card mb-2 position-relative" style="width: 35rem;">
+        <div class="card-body">
+            <a href="{% url 'event-detail' event.event.id %}">
+                <h5 class="card-title event-title">{{event.event.title}}</h5>
+            </a>
+            <div class="d-flex justify-content-between"></div>
+                <a href="#">{{event.event.publisher}}, </a>
+                <small>Event Date : {{event.event.event_date}}</small>
+                <a href="{% url 'pocket-delete' event.id %}" title='Delete' style="color:red"><i class="bi bi-trash m-2"></i></a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock content%}

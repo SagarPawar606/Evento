@@ -1,0 +1,50 @@
+{% extends "events/base.html" %}
+
+{% block content %}
+    <div class="container event-detail">
+        <div class="event-meta mx-2 my-3 px-5 border">
+            <div class="publisher-info">
+                <img class="publisher-img rounded-circle " src={{event.publisher.profile.profile_pic.url}} alt="">
+                <h4><a href="{% url 'others-profile' event.publisher.id %}">{{event.publisher.username}}</a></h4>
+                <div class="user-accounts">
+                    {% if event.publisher.profile.insta %}
+                        <a href="#"><i class="bi bi-instagram px-2"></i></a><br>
+                    {% endif %}
+                    {% if event.publisher.profile.facebook %}
+                        <a href="#"><i class="bi bi-facebook px-2"></i></a><br>
+                    {% endif %}
+                    {% if event.publisher.profile.twitter %}
+                        <a href="#"><i class="bi bi-twitter px-2"></i></a><br>
+                    {% endif %}
+                    {% if event.publisher.profile.website %}
+                        <a href="#"><i class="bi bi-link px-2"></i></a><br>
+                    {% endif %}
+                </div>
+            </div>
+             
+            <table>
+                <tr>
+                    <td class="px-2"><i class="bi bi-geo-alt-fill"></i></td>
+                    <td><a href="#">{{event.venue}}</a></td>
+                </tr>
+                <tr>
+                    <td class="px-2"><i class="bi bi-calendar-check"></i></td>
+                    <td><a href="#">{{event.event_date}}</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="event-content my-3 border">
+            <div class="mx-3">
+                {% if event.event_banner_img %}
+                    <img src="{{event.event_banner_img.url}}" alt="">
+                {% endif %}
+                <h2 class="my-2">{{event.title}}</h2>
+                <small>Added : {{event.date_added}}</small>
+                <small class="badge bg-secondary mx-5">{{event.event_category}}</small>
+                <p>{{event.description | safe }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content%}

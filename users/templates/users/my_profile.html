@@ -1,0 +1,45 @@
+{% extends 'events/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    
+    <div class=" border container mt-3 ">
+        <div class="my-3 d-flex justify-content-center">
+            <img class="rounded-circle account-img" src={{user.profile.profile_pic.url}} alt="">
+        </div>
+    
+        <div >
+            <h1>{{user.username}}</h1>
+            <p>{{user.profile.bio | linebreaks }}</p>
+            <h4>{{user.profile.location}}</h4>
+        </div>
+        <div class='user-accounts'>
+            {% if user.profile.insta %}
+            <a href="https://www.instagram.com/{{user.profile.insta}}/" title="instagram"><i class="bi bi-instagram px-2"></i></a><br>
+            {% endif %}
+            {% if user.profile.facebook %}
+            <a href="https://www.facebook.com/{{user.profile.facebook}}/" title="facebook"><i class="bi bi-facebook px-2"></i></a><br>
+            {% endif %}
+            {% if user.profile.twitter %}
+            <a href="https://twitter.com/{{user.profile.twitter}}/" title="twitter"><i class="bi bi-twitter px-2"></i></a><br>
+            {% endif %}
+            {% if user.profile.website %}
+            <a href="{{user.profile.website}}" title="website"><i class="bi bi-link px-2"></i></a><br>
+            {% endif %}
+        
+    </div>
+
+        <form method='POST', class="my-5" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="border w-50 p-3 mx-auto mt-2">
+            <fieldset>
+                <legend class="mb-3 ">Update Profile</legend>
+                {{u_form | crispy}}
+                {{p_form | crispy}}
+                <button class='btn btn-outline-info mt-2' type='submit'>Update</button>
+            </fieldset>
+            </div>
+        </form>
+
+    </div>
+    
+{% endblock content %}
