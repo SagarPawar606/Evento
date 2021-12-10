@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.urls.base import reverse, reverse_lazy
 from django.views.generic.base import View
 from .models import Event
 from django.views.generic import (ListView, DetailView, 
@@ -11,6 +9,11 @@ from users.models import Pocket
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from .serializers import PocketListSerializer
 # Create your views here.
 
 
@@ -26,7 +29,7 @@ class ListViewEvent(ListView):
         return context
 
 class CarouselList(ListView):
-    '''homepage content'''
+    '''Featured content'''
     model = Event
     template_name = 'events/carousel.html'
     context_object_name = 'events'
@@ -70,7 +73,7 @@ class DetailViewEvent(DetailView):
 
 
 
-class CreateViewEvent(LoginRequiredMixin, SuccessMessageMixin,CreateView):
+class CreateViewEvent(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = EventForm
     model = Event
     #template name format -> 'app_name/modelname_form.html'
@@ -82,7 +85,7 @@ class CreateViewEvent(LoginRequiredMixin, SuccessMessageMixin,CreateView):
         return super().form_valid(form)
 
 # CreateView and UpdateView shares the common template
-class UpdateViewEvent(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin ,UpdateView):
+class UpdateViewEvent(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Event
     form_class = EventForm
     template_name = 'events/event_form.html'
@@ -112,6 +115,7 @@ class PocketEventList(LoginRequiredMixin, ListView):
         return Pocket.objects.filter(user = self.request.user)
 
 class DeletePocketEvent(LoginRequiredMixin, DeleteView):
+    '''delete saved event from pocket'''
     model = Pocket
     context_object_name = 'event'
     template_name = 'events/pocket_confirm_delete.html'
@@ -119,8 +123,8 @@ class DeletePocketEvent(LoginRequiredMixin, DeleteView):
 
 
 class Search(View):
+    '''search for event or user'''
     template_name = 'events/search_data.html'
-
     def get(self, request, *args, **kwargs):
         searched_for = request.GET.get('search') # 'search' -> name of searchfield
         q_data = Event.objects.filter(Q(title__icontains = searched_for) | Q(description__icontains = searched_for) | Q(keywords__icontains = searched_for))
@@ -129,3 +133,14 @@ class Search(View):
         return render(request, self.template_name, {'searched_for':searched_for, 'e_data':q_data, 'u_data':u_data})
 
     
+#######---------api--------#######
+@api_view(['GET'])
+def testapi(request):
+    return Response('hello world')
+
+@api_view(['GET'])
+def pocket_items(request, pk):
+    pocket_events = Pocket.objects.filter(user=pk)
+    serializer = PocketListSerializer(pocket_events, many=True)
+    return Response(serializer.data)
+

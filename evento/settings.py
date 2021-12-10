@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,8 +43,10 @@ INSTALLED_APPS = [
     #custom apps
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
+    'payments.apps.PaymentsConfig',
     'ckeditor',
     'crispy_forms',
+    'rest_framework',
     
 ]
 
@@ -147,3 +151,9 @@ CKEDITOR_CONFIGS = {
         'width': 700,
     },
 }
+
+load_dotenv()
+env_path = Path('.')/'.env'
+load_dotenv(dotenv_path=env_path)
+KEY_ID = os.getenv('KEY_ID')
+KEY_SECRET = os.getenv('KEY_SECRET')

@@ -1,0 +1,42 @@
+{% extends "events/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class='container'>
+        <div class="row my-5">
+            <div class='col-6 event_banner'>
+                <img class='img-thumbnail' src={{event.event_banner_img.url}}>
+            </div>
+            <div class='col-6 event_meta'>
+                <h1>{{event.title}}</h1>
+                <span>By : {{event.publisher}}</span>
+                <p><td><i class="bi bi-geo-alt-fill pe-2"></i></td>{{event.venue}}</p>
+                <h5>{{event.event_date}}</h5>
+
+                <form method="POST">
+                        <div class="row my-3">
+                            <div class="col-6">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                            </div>
+                        <div class="row">
+                            <div class='col-6'>
+                                <button class="btn btn-outline-info" type="submit"> Proceed </button>
+                            </div>
+                        </div>
+                        </div>
+                    
+            </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+    
+
+{%endblock%}

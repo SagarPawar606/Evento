@@ -30,8 +30,9 @@ class Event(models.Model):
     publisher = models.ForeignKey(User, on_delete = models.CASCADE)
     event_banner_img = models.ImageField(upload_to = 'events_banner/')
     date_added = models.DateField(auto_now_add=True,)   
-    event_date = models.DateField(null=True)
-    keywords = models.CharField(max_length=200, blank=True, null=True)
+    event_date = models.DateField(blank=True, null=True)
+    pricing = models.IntegerField(blank=True, null=True)
+    keywords = models.CharField(max_length=200, blank=True)
 
     featured = models.BooleanField(default=False)
     disabled = models.BooleanField(default=False)
