@@ -20,7 +20,7 @@ from .serializers import PocketListSerializer
 class ListViewEvent(ListView):
     '''homepage content'''
     model = Event
-    template_name = 'events/home.html'
+    template_name = 'events/newHome.html'
     context_object_name = 'events'
 
     def get_context_data(self, **kwargs):
@@ -142,5 +142,6 @@ def testapi(request):
 def pocket_items(request, pk):
     pocket_events = Pocket.objects.filter(user=pk)
     serializer = PocketListSerializer(pocket_events, many=True)
+    print(serializer.data)
     return Response(serializer.data)
 

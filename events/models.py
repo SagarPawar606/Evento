@@ -26,6 +26,7 @@ class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = RichTextField()
     venue = models.TextField()
+    city = models.CharField(max_length=100, null=True, blank=True)
     event_category = models.CharField(max_length=20, choices=category)
     publisher = models.ForeignKey(User, on_delete = models.CASCADE)
     event_banner_img = models.ImageField(upload_to = 'events_banner/')

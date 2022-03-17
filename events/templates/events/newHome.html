@@ -1,0 +1,38 @@
+{% extends "events\base.html" %} {% block content %}
+
+<div class="main-container">
+  <div class="content right-sidebar">Right sidebar</div>
+
+  <div class="content center">
+    {% for event in events %}
+    
+    <div class="card">
+      <a href="{% url 'event-detail' event.id %}">
+        <div class="card-image">
+          {% if event.event_banner_img %}
+          <img class="img" src="{{event.event_banner_img.url}}" alt="" />
+          {% endif %}
+        </div>
+      
+        <div class="card-text">
+          <h2 class="title-tag">{{event.title}}</h2>
+          <span class="publisher-tag"> <small> By : </small>{{event.publisher}}</span>
+          <h4 class="date-tag">Event Date : {{event.event_date}}</h4>
+          <span class="price-tag">Rs. {{event.pricing}}/- </span>
+          {% if event.city %}
+            <i class="bi bi-geo-alt-fill" style="width:100%;" >{{event.city}}</i>
+          {% endif %}
+        </div>
+      </a>
+      <div class="save-share">
+        <button class="save-btn">Save</button>
+        <button class="share-btn">Share</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="content left-sidebar">Left Sidebar</div>
+</div>
+
+{% endblock content %}

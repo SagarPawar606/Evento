@@ -1,96 +1,185 @@
 body {
-    background: #ffffff;
-    color: #333333;
-    margin-top: 1rem;
-  }
+  background: #ffffff;
+  color: #333333;
+  margin-top: 1rem;
+}
 
-.navbar{
+.navbar {
   /* position: fixed; */
-  top: 0px
+  top: 0px;
 }
 
 .account-img {
-    height: 155px;
-    width: 155px;
-    margin-right: 20px;
-    margin-bottom: 16px;
-  }
-  
-.search-account-img{
+  height: 155px;
+  width: 155px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.search-account-img {
   height: 80px;
   width: 80px;
   margin-right: 20px;
   margin-bottom: 16px;
 }
 
-.publisher-info{
-    margin-top: 10px;
-    display:flex;
-    align-items: center;
-    flex-direction: column;
+.publisher-info {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.publisher-img{
+
+.publisher-img {
   height: 130px;
   width: 130px;
 }
 
-.container.event-detail{
+.container.event-detail {
   display: flex;
 }
 
-.event-meta{
+.event-meta {
   height: max-content;
   /* position: sticky; */
-  top: 75px
+  top: 75px;
 }
 
-.user-accounts{
-  display:flex;
-  margin: 5px   
-  }
+.user-accounts {
+  display: flex;
+  margin: 5px;
+}
 
-
-h1, h2, h3, h4, h5, h6 {
-  color:#444444;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #444444;
   font-weight: 600;
 }
-
 
 a {
   color: #282a2c;
   text-decoration: none;
 }
 
-.event-title{
-  color:#3b2c52 
+.event-title {
+  color: #3b2c52;
 }
 
-i{
-  display:inline;
+i {
+  display: inline;
   width: 50px;
 }
 
-.bi-instagram{
-  color: #fb3958
+.bi-instagram {
+  color: #fb3958;
 }
 
-.bi-facebook{
-  color: #4267B2
+.bi-facebook {
+  color: #4267b2;
 }
 
-.bi-twitter{
-  color: #1DA1F2
+.bi-twitter {
+  color: #1da1f2;
 }
 
-.bi-geo-alt-fill{
-  color:red
+.bi-geo-alt-fill {
+  color: red;
 }
 
-.bi-calendar-check{
-  color:rgb(0, 137, 228)
+.bi-calendar-check {
+  color: rgb(0, 137, 228);
 }
 
-.event_form{
+.event_form {
   width: max-content;
   /* width:800px; */
+}
+
+/* ------------------------------------------------------- */
+/* newHome.html CSS */
+.main-container {
+  background-color: antiquewhite;
+  width: 100%;
+  margin: 25px auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2.2fr 0.8fr;
+  column-gap: 10px;
+}
+
+.content {
+  background-color: #ffffff;
+  /* border: #282a2c 1px solid; */
+  padding: 5px;
+  /* margin: 5px; */
+}
+
+.card {
+  background-color: #ffffff;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card:hover {
+  transform: translate(0px, -3px);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-text {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  column-gap: 20px;
+  /* grid-template-rows: 1fr 1fr 1fr; */
+}
+
+.img {
+  max-width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.price-tag {
+  background-color: #d1b000;
+  max-width: fit-content;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.title-tag {
+  /* font-style: italic; */
+  font-size: 25px;
+  color: #4267b2;
+}
+
+.date-tag {
+  font-size: 16px;
+}
+
+.save-share {
+  margin: 15px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between
+}
+
+.save-btn{
+  background-color: #4267b2;
+  color: white;
+  border-radius: 10px;
+  padding: 0px 15px;
+}
+
+.share-btn{
+  background-color: #4267b2;
+  color: white;
+  border-radius: 10px;
+  padding: 0px 15px;
 }
