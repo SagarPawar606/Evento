@@ -32,7 +32,7 @@ class Event(models.Model):
     event_banner_img = models.ImageField(upload_to = 'events_banner/')
     date_added = models.DateField(auto_now_add=True,)   
     event_date = models.DateField(blank=True, null=True)
-    pricing = models.IntegerField(blank=True, null=True)
+    pricing = models.IntegerField(blank=True, null=True, default=0)
     keywords = models.CharField(max_length=200, blank=True)
 
     featured = models.BooleanField(default=False)
@@ -44,6 +44,8 @@ class Event(models.Model):
     # Override the default save method of models
     # We can make changes and then save the object in model 
     def save(self):
+        if self.city:
+            self.city = self.city.lower()
         super().save()
         img = Image.open(self.event_banner_img.path)
         if img.height>800 or img.width>500:

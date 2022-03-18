@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'crispy_forms',
     'rest_framework',
+    'django_filters',
     
 ]
 

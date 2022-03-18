@@ -14,6 +14,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .serializers import PocketListSerializer
+from .filters import EventFilter
 # Create your views here.
 
 
@@ -23,9 +24,21 @@ class ListViewEvent(ListView):
     template_name = 'events/newHome.html'
     context_object_name = 'events'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        '''modifies the queryset to filter event accroding EventFilter'''
+        print(self.request)
+        filter = EventFilter(self.request.GET, queryset)
+        return filter.qs
+
     def get_context_data(self, **kwargs):
         context = super(ListViewEvent, self).get_context_data(**kwargs)
         context['featured_event'] = Event.objects.filter(featured=True).all()
+
+        '''Filter form to filter the event according to city and catergories'''
+        filter_form = EventFilter(self.request.GET, Event.objects.all())
+        context['filter_form'] = filter_form
         return context
 
 class CarouselList(ListView):

@@ -1,11 +1,19 @@
 {% extends "events\base.html" %} {% block content %}
+{% load crispy_forms_tags %}
 
 <div class="main-container">
-  <div class="content right-sidebar">Right sidebar</div>
+  <div class="content right-sidebar">
+    <form method="get" class="filter-form">
+      {{filter_form.form | crispy}}
+      <button class="filter-btn" type="submit">Search</button>
+    </form>
+  </div>
 
   <div class="content center">
-    {% for event in events %}
-    
+    {% if not events %}
+    <h3>Sorry ! No events found...</h3>
+    {% endif %} {% for event in events %}
+
     <div class="card">
       <a href="{% url 'event-detail' event.id %}">
         <div class="card-image">
@@ -13,14 +21,19 @@
           <img class="img" src="{{event.event_banner_img.url}}" alt="" />
           {% endif %}
         </div>
-      
+
         <div class="card-text">
           <h2 class="title-tag">{{event.title}}</h2>
-          <span class="publisher-tag"> <small> By : </small>{{event.publisher}}</span>
+          <span class="publisher-tag">
+            <small> By : </small>{{event.publisher}}</span>
           <h4 class="date-tag">Event Date : {{event.event_date}}</h4>
-          <span class="price-tag">Rs. {{event.pricing}}/- </span>
+          {% if event.pricing == 0 %}
+            <span class="price-tag" style="background-color: green; color: white;">Free</span>
+          {% else %}
+            <span class="price-tag">Rs. {{event.pricing}}/- </span>
+          {% endif %}
           {% if event.city %}
-            <i class="bi bi-geo-alt-fill" style="width:100%;" >{{event.city}}</i>
+          <i class="bi bi-geo-alt-fill" style="width: 100%">{{event.city}}</i>
           {% endif %}
         </div>
       </a>
