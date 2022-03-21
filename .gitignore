@@ -1,3 +1,4 @@
+.gitignore
 .env
 admin_username_pass.txt
-.gitignore
+.sqlite3

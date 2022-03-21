@@ -15,8 +15,8 @@ class Profile(models.Model):
     facebook = models.CharField(max_length=100, blank=True)
     website = models.CharField(max_length=100, blank=True)
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(self, *args, **kwargs)
         img = Image.open(self.profile_pic.path)
         if img.height>300 or img.width>300:
             dimension = (300,300)
