@@ -1,4 +1,4 @@
 .gitignore
 .env
 admin_username_pass.txt
-.sqlite3
+db.sqlite3
