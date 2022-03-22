@@ -5,4 +5,4 @@ from .models import Event
 class EventInterface(admin.ModelAdmin):
     list_display = ('id', 'title', 'publisher', 'event_date', 'featured', 'disabled')
 
-admin.site.register(Event, EventInterface)
+admin.site.register(Event, EventInterface) 

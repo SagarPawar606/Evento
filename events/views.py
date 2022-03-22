@@ -20,16 +20,16 @@ from .filters import EventFilter
 
 class ListViewEvent(ListView):
     '''homepage content'''
+    
+    paginate_by = 2
     model = Event
     template_name = 'events/newHome.html'
-    context_object_name = 'events'
-    paginated_by = 2
+    # context_object_name = 'events'
 
     def get_queryset(self):
         queryset = super().get_queryset()
 
         '''modifies the queryset to filter event accroding EventFilter'''
-        print(self.request)
         filter = EventFilter(self.request.GET, queryset)
         return filter.qs
 
