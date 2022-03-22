@@ -27,7 +27,7 @@ SECRET_KEY = 'z$gu9)%lxm37(&)(n68vw3cj1o*necwq-%ggt&#-2c8e27d#xw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','django-evento.herokuapp.com']
 
 
 # Application definition

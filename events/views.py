@@ -23,6 +23,7 @@ class ListViewEvent(ListView):
     model = Event
     template_name = 'events/newHome.html'
     context_object_name = 'events'
+    paginated_by = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()

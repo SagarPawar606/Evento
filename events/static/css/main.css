@@ -9,6 +9,15 @@ body {
   top: 0px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+  .logo{
+      padding: 10px;
+      /* font-family: 'Bebas Neue', cursive; */
+      font-size: 25px;
+      color: goldenrod;
+      
+  }
+
 .account-img {
   height: 155px;
   width: 155px;
@@ -126,7 +135,9 @@ i {
   margin: 20px;
   border-radius: 20px;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+   /* margin: auto;
+  max-width: 500px; */
+} 
 
 .card:hover {
   transform: translate(0px, -3px);
