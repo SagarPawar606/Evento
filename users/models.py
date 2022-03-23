@@ -25,7 +25,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username + '- Profile'
-
+'''
 class Pocket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, blank=False, null=False)
@@ -37,3 +37,22 @@ class Pocket(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.event.title}'
+'''
+
+class Pocket(models.Model):
+    pocket_user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.pocket_user.username} - Pocket'
+
+class PocketEvent(models.Model):
+    pocket = models.ForeignKey(Pocket, on_delete=models.CASCADE) 
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['pocket', 'event'], name='unique_event')
+        ]
+    
+    def __str__(self):
+        return f'{self.pocket} - {self.event.title}'
