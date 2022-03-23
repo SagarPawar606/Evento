@@ -77,15 +77,6 @@ class DetailViewEvent(DetailView):
     template_name = 'events/detail.html'
     context_object_name = 'event'
 
-    ##########need to work on this############
-    # def get_context_data(self, **kwargs):
-    #     context = super(DetailViewEvent, self).get_context_data(**kwargs)
-    #     date_added = Event.objects.filter(id=self.kwargs['pk']).values('date_added').first()
-    #     added_ago = datetime.now().date() - date_added['date_added']
-    #     context['added_ago'] = str(added_ago).split(",")[0]
-    #     return context
-
-
 
 class CreateViewEvent(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = EventForm

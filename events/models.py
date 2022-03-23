@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from PIL import Image
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 from ckeditor.fields import RichTextField
 
@@ -33,6 +34,7 @@ class Event(models.Model):
     date_added = models.DateField(auto_now_add=True,)   
     event_date = models.DateField(blank=True, null=True)
     pricing = models.IntegerField(blank=True, null=True, default=0)
+    slug = models.SlugField(blank=True, null=True, max_length=100)
     keywords = models.CharField(max_length=200, blank=True)
 
     featured = models.BooleanField(default=False)
@@ -44,6 +46,7 @@ class Event(models.Model):
     # Override the default save method of models
     # We can make changes and then save the object in model 
     def save(self):
+        self.slug = slugify(self.title)
         if self.city:
             self.city = self.city.lower()
         super().save()
@@ -54,7 +57,7 @@ class Event(models.Model):
             img.save(self.event_banner_img.path)
 
     def get_absolute_url(self):
-        return reverse('event-detail', kwargs={'pk': self.pk})
+        return reverse('event-detail', kwargs={'slug': self.slug})
 
 
     def __str__(self):

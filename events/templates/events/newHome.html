@@ -17,11 +17,11 @@
 
     {% for event in page_obj %}
     <div class="card"> 
-      <a href="{% url 'event-detail' event.id %}">
+        <a href="{{ event.get_absolute_url }}">
         <div class="card-image">
           {% if event.event_banner_img %}
           <img class="img" src="{{event.event_banner_img.url}}" alt="" />
-          {% endif %}
+          {% endif %} 
         </div>
         <div class="card-text">
           <h2 class="title-tag">{{event.title}}</h2>

@@ -16,9 +16,9 @@ urlpatterns = [
     path('search/', Search.as_view(), name='search-field'),
     path('myevent/', MyEventList.as_view(), name='myevent-page'),
     path('event/create/', CreateViewEvent.as_view(), name='event-create'),
-    path('event/<int:pk>/', DetailViewEvent.as_view(), name='event-detail'),
-    path('event/<int:pk>/update/', UpdateViewEvent.as_view(), name='event-update'),
-    path('event/<int:pk>/delete/', DeleteViewEvent.as_view(success_url=reverse_lazy('myevent-page')), name='event-delete'),
+    path('event/<str:slug>/', DetailViewEvent.as_view(), name='event-detail'),
+    path('event/<str:slug>/update/', UpdateViewEvent.as_view(), name='event-update'),
+    path('event/<str:slug>/delete/', DeleteViewEvent.as_view(success_url=reverse_lazy('myevent-page')), name='event-delete'),
     path('event/<str:category>/', CategoricalEventList.as_view(), name='categorical-event'),
     
     path('api/', views.testapi, name='api-test'),

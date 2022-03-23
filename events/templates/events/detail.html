@@ -51,7 +51,7 @@
                 {% endif %}
                 <h2 class="my-2">{{event.title}}</h2>
                 <small>Added : {{event.date_added}}</small>
-                <small class="badge bg-secondary mx-5">{{event.event_category}}</small>
+                <small class="badge bg-secondary mx-5">{{event.get_event_category_display}}</small>
                 <p>{{event.description | safe }}</p>
             </div>
         </div>
